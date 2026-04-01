@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>목록 관련 태그</title>
+    </head>
+    <body>
+        <li>목록 1</li>
+        <li>목록 2</li>
+        <!-- li 태그 : 목록 항목(list item) -->
+
+        <br><hr>
+
+        <ul>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <ul>
+                <li>목록 2-1</li>
+                <li>목록 2-2</li>
+            </ul>
+        </ul>
+        <!--
+            ul 태그 : 순서 없는 목록(unordered list)
+            - 앞에 불릿(bullet)기호가 붙어서 나옴
+            불릿 기호의 모양은 변경 가능(CSS로)
+        -->
+
+        <br><hr>
+
+        <ol>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <ol>
+                <li>목록 2-1</li>
+                <li>목록 2-2</li>
+            </ol>
+        </ol>
+        <!--
+            ol 태그 : 순서 있는 목록(ordered list)
+            - 앞에 숫자, 알파벳 등이 붙어서 나옴
+            숫자, 알파벳 등의 모양은 변경 가능(type 속성으로)
+        -->
+
+        <br>
+
+        <ol type="1">
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <ol type="A">
+                <li>목록 2-1</li>
+                <li>목록 2-2</li>
+            </ol>
+        </ol>
+        <!-- 기본값이 type="1" / A, a, i, I 사용 가능-->
+
+        <br>
+
+        <ol type="a" start="3">
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <ol type="I" start="3">
+                <li>목록 2-1</li>
+                <li>목록 2-2</li>
+            </ol>
+        </ol>
+        <!--
+            type 속성과 start 속성을 사용하여 목록의 스타일과 
+            시작 번호를 변경 가능
+        -->
+
+        <br>
+
+        <ol>
+            <li>목록 1</li>
+            <li>목록 2</li>
+            <ol reversed start="4" type="A">
+                <li>목록 2-1</li>
+                <li>목록 2-2</li>
+            </ol>
+        </ol>
+        <!--
+            reversed 속성을 사용하여 목록의 순서를 역순으로 변경 가능
+        -->
+
+        <br><hr>
+
+        <h1>dl : 설명과 관련된 목록 태그</h1>
+
+        <dl>
+            <dt>dt : 설명할 단어</dt>
+            <dd>dd : 설명할 단어에 대한 설명</dd>
+
+            <dt>HTML</dt>
+            <dd>HyperText Markup Language의 약자...</dd>
+        </dl>
+
+        <br><hr>
+
+        <!-- html 응용문제 2-->
+        <h3>자바(Java) 학습내용</h3>
+        <h4>담당 강사 : 김가현</h4>
+        이메일 : ghkim1121@iei.or.kr
+        <hr>
+        <ul>
+            <li>프로그래밍 언어
+                <ul>
+                    <li><s>Java</s></li>
+                </ul>
+            </li>
+
+            <li>데이터베이스
+                <ul>
+                    <li><s>Oracle</s></li>
+                </ul>
+            </li>
+
+            <li>Frontend
+                <ol >
+                    <li><mark>HTML5</mark></li>
+                    <li>CSS3</li>
+                    <li>JavaScript</li>
+                    <li>jQuery</li>
+                </ol>
+            </li>
+
+            <li>서버 개발 기술
+                <ol type="i">
+                    <li><s>JDBC</s></li>
+                    <li>Servlet</li>
+                    <li>JSP</li>
+                    <li>AJAX</li>
+                </ol>
+            </li>
+
+            <li>프레임워크
+                <ol type="a">
+                    <li>MyBatis</li>
+                    <li><b>Spring</b></li>
+                </ol>
+            </li>
+        </ul>
+
+    </body>
+</html>
