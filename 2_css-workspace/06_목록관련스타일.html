@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>목록 관련 스타일</title>
+    <style>
+        /* list-style-type */
+        #ul1 {
+            list-style-type : square;
+            /* 기본값은 disc */
+        }
+
+        #ol1 {
+            list-style-type : lower-roman;
+            /* 기본값은 decimal */
+        }
+
+        /*
+            list-style-position
+            list-style-image
+        */
+        #ul2 {
+            list-style-position : inside;
+            /* 기본값은 outside */
+            list-style-image : url("resources/image/iconsample.png");
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>목록 관련 스타일 속성 (list-~)</h1>
+
+    <h3>
+        list-style-type : 불릿 기호를 변경시켜줄 때 사용
+    </h3>
+
+    <pre>
+        [ 표현법 ]
+
+        * 순서 없는 목록 (ul)
+
+        선택자 {
+            list-style-type : disc/circle/square/none;
+        }
+
+        * 순서 있는 목록 (ol)
+
+        선택자 {
+            list-style-type : decimal/decimal-leading-zero;
+            list-style-type : lower-alpha/upper-alpha;
+            list-style-type : lower-roman/upper-roman;
+        }
+    </pre>
+
+    <h4>순서 없는 목록 (ul)</h4>
+
+    <!-- ul#ul1>li*4 + Enter -->
+    <ul id="ul1">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ul>
+
+    <br>
+
+    <h4>순서 있는 목록 (ol)</h4>
+
+    <!-- ol#ol1>li*4 + Enter -->
+    <ol id="ol1">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>jQuery</li>
+    </ol>
+
+    <br><br>
+
+    <hr>
+
+    <h3>
+        list-style-position : 불릿기호의 위치를 조정할 때 사용
+    </h3>
+
+    <h3>
+        list-style-image : 불릿기호를 이미지로 적용할 때 사용
+    </h3>
+
+    <pre>
+        [ 표현법 ]
+
+        선택자 { 
+            list-style-position : inside/outside;
+            list-style-image : url("이미지경로");
+        }
+    </pre>
+
+    <h4>KH정보교육원 위치 안내</h4>
+
+    <ul id="ul2">
+        <li>강남점 1관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 2F, 3F, 4F, 5F, 6F</li>
+        <li>강남점 2관 : 서울특별시 강남구 테헤란로10길 9 그랑프리 빌딩 4F, 5F, 7F</li>
+        <li>강남점 3관 : 서울특별시 강남구 테헤란로 130 호산빌딩 5F, 6F</li>
+        <li>종로점 : 서울특별시 종로구 우정국로2길 21 대왕빌딩 3F, 5F (1호선 종각역 4번 출구 91m 도보 1분 거리)</li>
+        <li>논현점 : 서울특별시 강남구 논현로 132길 9 마루빌딩 1F, 2F, 3F</li>
+        <li>부산점 : 부산 부산진구 중앙대로 627 삼비빌딩 2F, 12F/li>
+    </ul>
+
+</body>
+</html>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
