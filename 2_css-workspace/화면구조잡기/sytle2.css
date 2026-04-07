@@ -1,0 +1,69 @@
+.wrap {
+    width: 1000px;
+    height: 800px;
+        /* 보통 사이트들은 창의 크기 바꾼다고 내용물의 크기가 변하지 않음 */
+    margin: auto;
+        /* 중앙 정렬 */
+    padding: 0;
+    box-sizing: border-box;
+        /* 테두리까지 포함한 크기로 width와 height를 적용하는 속성
+        기본적으로 width와 height는 content 영역만을 기준으로 계산됨 */
+}
+
+/* 임시 보더 */
+div {
+    border: 1px solid red;
+}
+
+
+.wrap > div {
+    width: 100%;
+    display: flex;
+        /* 자식 요소들을 가로로 배치하는 속성 */
+        /* 기본적으로 div는 블록 요소이므로 세로로 배치됨 */
+    align-items: center;
+        /* 자식 요소들을 세로로 가운데 정렬하는 속성 */
+    justify-content: center;
+        /* 자식 요소들을 가로로 가운데 정렬하는 속성 */
+}
+
+#header {
+    height: 20%;
+    background-color: #00C73C;
+    color: #fff;
+}
+
+#content {
+    height: 60%;
+    background-color: #fafafa;
+}
+
+#footer {
+    height: 20%;
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+.wrap > div > div {
+    height: 100%;
+}
+
+#header_1 {
+    width: 30%;
+}
+
+#header_2 {
+    width: 70%;
+}
+
+#content_1 {
+    width: 15%;
+}
+
+#content_2 {
+    width: 65%;
+}
+
+#content_3 {
+    width: 20%;
+}
