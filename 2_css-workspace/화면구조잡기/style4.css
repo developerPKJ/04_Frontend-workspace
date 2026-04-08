@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #141517;
 }
 
 /*
@@ -10,6 +11,10 @@ div {
     border: 1px solid red;
 }
 */
+
+#logo {
+    width: 100%;
+}
 
 .wrap {
     width: 1000px;
@@ -33,6 +38,7 @@ div {
 #content {
     height: 55%;
     display: flex;
+    margin-top: 10px;
 }
 
 #footer {
@@ -62,6 +68,11 @@ div {
 
 #content_2 {
     width: 60%;
+    /*
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    */
 }
 
 #content_3 {
@@ -70,8 +81,14 @@ div {
 
 
 /* footer css */
+/*
 #footer {
-    background-color: lightgrey;
+    background-color: #000000;
+}
+*/
+
+#footer > hr {
+    border: 1px solid #555555;
 }
 
 #footer > div {
@@ -80,6 +97,7 @@ div {
 
 #footer_1 {
     height: 20%;
+    text-align: center;
 }
 
 #footer_2 {
@@ -88,7 +106,7 @@ div {
 
 #footer_1 > a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-weight: 570;
     margin: 15px;
     vertical-align: middle;
@@ -100,6 +118,8 @@ div {
     font-size: 12px;
     box-sizing: border-box;
     width: 100%;
+    color: #9DA5B6;
+    text-align: center;
 }
 
 #p1 {
@@ -116,9 +136,12 @@ div {
 /* login css */
 #login_form {
     /* 위에서 살짝 띄우기 */
-    margin-top: 10px;
+    padding-top: 10px;
+    margin-left: 5px;
     width: 100%;
     height: 30%;
+    border: 1px solid #555555;
+    border-radius: 10px;
 }
 
 #login_form > * {
@@ -134,6 +157,7 @@ div {
 #login_form_etc {
     height: 20%;
     text-align: center;
+    border-radius: 10px;
 }
 
 #login_input_form > * {
@@ -142,27 +166,35 @@ div {
 
 #login_input_id_pwd {
     width: 65%;
+    padding-left: 10px;
 }
 
 #login_input_btn {
     width: 35%;
+    padding-left: 5px;
 }
 
 #login_input_id_pwd > input {
-    width: 100%;
-    height: 50%;
+    width: 95%;
     box-sizing: border-box;
+    height: 50%;
+    border-radius: 10px;
+    border : 1px solid white;
+    color: white;
 }
 
 #login_input_btn > input {
-    width: 100%;
-    height: 100%;
+    width: 90%;
     box-sizing: border-box;
+    height: 100%;
+    border-radius: 10px;
+    color: white;
+    border : 1px solid white;
 }
 
 #login_form_etc > a {
     text-decoration: none;
-    color: black;
+    color: white;
     font-size: 12px;
     margin: 10px;
     font-weight: 570;
@@ -177,7 +209,7 @@ div {
 
 #search_form {
     width: 80%;
-    height: 20%;
+    height: 30%;
     display: flex;
     position: absolute;
         /* 상대경로 설정 */
@@ -204,26 +236,31 @@ div {
 }
 
 #search_form > div > #search {
-    border-radius: 10px ;
+    border-radius: 30px;
+    border : 1px solid white;
+    padding-left: 20px;
+    margin-right: 5px;
 }
 
 #search_form > div > #submit {
-    border-radius: 10px;
+    border-radius: 30px;
     margin-left: 5px;
+    border : 1px solid white;
 }
 
 #search_form > div > input {
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+    color: white;
 }
 
 
 /* navigator css */
 #navi {
     /* 위와 아래만 border선 */
-    border-top: 1px solid blue;
-    border-bottom: 1px solid blue;
+    border-top: 1px solid #00FFA3;
+    border-bottom: 1px solid #00FFA3;
     margin: 0;
     padding: 0;
         /* ul tag경우 margin, padding가 default로 설정되어 있음 */
@@ -281,7 +318,7 @@ div {
 
 #navi a {
     /* border: 1px solid purple; */
-    color: lightcoral;
+    color: white;
     font-size: 13px;
     font-weight: 760;
     text-decoration: none;
@@ -321,4 +358,52 @@ div {
     bottom: 0;
     right: 0;
     margin: auto;
+}
+
+/* video css */
+#content_2 > #video {
+    width: 95%;
+    aspect-ratio: 16 / 9;
+    max-height: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    margin-top: 30px;
+}
+
+#content_2 > #video > iframe {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 3px solid #00FFA3;
+    border-radius: 10px;
+}
+
+/* news css */
+#news {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+#news > a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 570;
+    width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#news > a > img {
+    width: 80%;
+    height: 90px;
+    object-fit: cover;
+        /* 고정된 크기로 압축하는게 아니라 이미지 일부를 자르려면 */
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 3px solid #00FFA3;
 }

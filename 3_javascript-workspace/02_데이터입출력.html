@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 입출력</title>
+</head>
+<body>
+    <!--
+        자바스크립트의 최상위 내장객체
+        1. window : 브라우저의 창을 의미하는 객체
+        -   자바스크립트에서 제일 최상위 내장 객체
+            브라우저 창 1개를 window 객체 1개가 담당한다.
+            (브라우저 창 안에 존재하는 모든 요소들의 최상위 객체)
+            window 계열 구문들은 모든 곳에 적용 가능
+            그래서 보통 window.은 생략해서 사용한다.
+
+        2. document : 웹페이지를 의미하는 객체
+        -   window의 자식 객체들 중 하나
+            웹 문서(html파일) 하나당 document 객체 1개가 담당한다.
+            (html 문서에 대한 정보들을 가지고 있음)
+    -->
+
+    <h1>자바스크립트에서의 데이터 입출력</h1>
+
+    <h2>1. 데이터를 출력하는 기본 구문</h2>
+
+    <p>
+        1) alert("알림창에 출력할 문구") <br>
+        2) console.log("개발자 도구 콘솔창에 출력할 문구") <br>
+        3) document.write("웹페이지에 출력할 문구") <br>
+        4) 선택한요소.innerHTML/innerText = "선택한 요소에 출력할 문구"
+    </p>
+
+    <br><br>
+
+    <h3>1) alert(알림창에 출력할 문구)</h3>
+
+    <button onclick="alert('출력출력출력')">알림창에 출력</button>
+
+    <br><br>
+
+    <h3>2) console.log(개발자 도구 콘솔창에 출력할 문구)</h3>
+
+    <button onclick="console.log('출력출력출력')">개발자 도구 콘솔창에 출력</button>
+
+    <br><br>
+
+    <h3>3) document.write(웹페이지에 출력할 문구)</h3>
+
+    <button onclick="documentWriteTest()">웹페이지에 출력</button>
+    <script>
+        function documentWriteTest() {
+            // document.write('출력출력출력');
+            // document.write()는 웹페이지에 작성된 모든 요소들을 지우고 body에 작성하기 때문에
+            // 웹페이지에 작성된 요소들을 유지하면서 출력하려면 사용하지 않는 것이 좋다.
+
+            // document.write('<h1>출력출력출력</h1>');
+            //출력 문구에 html 태그를 작성하면 태그가 해석되어 적용된 상태로 출력된다.
+
+            var table = "<table border='1'>";
+                table += "<tr>";
+                table += "<td>1</td>";
+                table += "<td>2</td>";
+                table += "</tr>";
+                table += "</table>";
+            document.write(table);
+        }
+    </script>
+
+    <br><br>
+
+    <h3>4) 선택한요소.innerHTML/innerText = "선택한 요소에 출력할 문구"</h3>
+
+    <button onclick="documentWriteTest()">선택한 요소에 출력</button>
+    <div id="output" class="outputTest"></div>
+    <script>
+        function documentWriteTest() {
+            var output = document.getElementById('output');
+
+            output.innerHTML = '<h1>출력출력출력</h1>';
+            console.log(output.innerHTML);
+            console.dir(output);
+                // 해당 값의 디렉토리 구조를 보고자 할 때 console.dir()을 사용한다.
+
+            console.log(output.id);
+            console.log(output.className);
+            console.log(output.innerHTML); // 태그도 텍스트로 읽어옴
+            console.log(output.innerText); // 태그는 해석해서 읽어옴
+            
+            // 위처럼 속성에 직접 접근해서 값을 가져오는 것도 가능하고
+            // 아래처럼 직접 접근해 값을 대입구문을 통해 변경하는 것도 가능하다.
+            
+            output.id = 'output2';
+            output.className = 'outputTest2';
+            output.innerHTML = '<h1>출력출력</h1>'; // html 태그 그대로 복사 붙여넣기
+            output.innerText = '<h1>출력출력</h1>'; // html 태그를 텍스트로 변환해서(&lt;&gt;) 입력
+
+            console.log(output.id);
+            console.log(output.className);
+            console.log(output.innerHTML);
+            console.log(output.innerText);
+
+            output.onclick = function() {
+                alert('출력된 요소 클릭');
+            }
+            // 아까 인라인 방식의 onclick=""이것들도 그냥 해당 요소의 속성에 function을 대입한것
+
+            console.dir(output);
+        }
+    </script>
+
+    <!-- document 계열의 출력문들은 화면에 출력하는 개념 -->
+
+    <br><br>
+
+    <hr>
+
+    <h2>2. 데이터를 입력받는 기본 구문(변수에 기록 가능)</h2>
+
+    <p>
+        1) 변수 = confirm("질문내용"); <br>
+        2) 변수 = prompt("질문내용"); <br>
+        3) 선택한요소.value;
+    </p>
+
+    <br><br>
+
+    <h3>1) confirm("질문내용");</h3>
+
+    <p>
+        - confirm 호출 시 "질문내용"과 "확인/취소" 버튼이 존재하는 알림창이 발생 <br>
+        - "확인" 버튼 클릭 시 true, "취소" 버튼 클릭 시 false 반환
+    </p>
+
+    <button type="button" onclick="testConfirm()">click</button>
+
+    <div class="area" id="area2"></div>
+
+    <script>
+        function testConfirm() {
+            var result = confirm('계속 진행하시겠습니까?');
+            console.log(result);
+
+            if(result) {
+                document.getElementById('area2').innerHTML = '<h2 style="color: green;">확인 버튼을 클릭했습니다.</h2>';
+            } else {
+                document.getElementById('area2').innerHTML = '<h2 style="color: red;">취소 버튼을 클릭했습니다.</h2>';
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <h3>2) prompt("질문내용");</h3>
+
+    <p>
+        - prompt 호출 시 "질문내용"과 "입력창", "확인/취소" 버튼이 존재하는 알림창이 발생 <br>
+        - 입력창에 입력한 값이 문자열 형태로 반환되고, "취소" 버튼 클릭 시 null 반환
+    </p>
+
+    <button type="button" onclick="testPrompt()">click</button>
+
+    <div class="area" id="area3"></div>
+
+    <script>
+        function testPrompt() {
+            var result = prompt('이름을 입력해주세요.');
+            console.log(result);
+
+            var area3 = document.getElementById('area3');
+
+            if(result) {
+                area3.innerHTML = '<h2 style="color: green;">' + result + '님 환영합니다.</h2>';
+            } else {
+                area3.innerHTML = '<h2 style="color: red;">취소 버튼을 클릭했습니다.</h2>';
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <button type="button" onclick="testPrompt2()">input num</button>
+
+    <ul id="ul1"></ul>
+
+    <script>
+        function testPrompt2() {
+            var num = prompt('숫자를 입력해주세요.');
+
+            if(num) {
+                for(var i = 1; i <= num; i++) {
+                    var li = document.createElement('li');
+                    li.innerText = i;
+                    document.getElementById('ul1').appendChild(li);
+                }
+            } else {
+                alert('취소 버튼을 클릭했습니다.');
+            }
+        }
+    </script>
+    <!-- window 계열의 입력 구문들은 브라우저의 xxx 를 통해 입력을 받기에 previewer로 테스트 불가능 -->
+    
+    <br><br>
+
+    <h3>3) 선택한요소.value;</h3>
+
+    아이디 : <input type="text" id="userId"> <br>
+    비밀번호 : <input type="password" id="userPwd"> <br>
+
+    <button type="button" onclick="testInputValue()">로그인</button>
+
+    <script>
+        function testInputValue() {
+            var userId = document.getElementById('userId').value;
+            var userPwd = document.getElementById('userPwd').value;
+
+            // console.log(userId);
+            // console.log(userPwd);
+
+            if(userId == 'user01' && userPwd == 'pass01') {
+                alert('로그인 성공');
+            } else {
+                alert('로그인 실패');
+            }
+            // 물론 이렇게 id/pwd를 하드코딩해서 비교하는 것은 실제로는 하지 않는 방식
+
+            userId = '';
+            userPwd = '';
+            // 입력 초기화
+            document.getElementById('userId').value = '';
+            document.getElementById('userPwd').value = '';
+
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    제목 : <textarea id="title"></textarea> <br>
+    내용 : <textarea id="content"></textarea> <br>
+
+    <button type="button" onclick="testTextAreaValue()">게시글 등록</button>
+
+    <br><br>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제목</th>
+                <th>내용</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+        </tbody>
+    </table>
+
+    <script>
+        function testTextAreaValue() {
+            var title = document.getElementById('title').value;
+            var content = document.getElementById('content').value;
+
+            // console.log(title);
+            // console.log(content);
+
+            var list = document.getElementById('list');
+
+            var str = "<tr>";
+                str += "<td>" + title + "</td>";
+                str += "<td>" + content + "</td>";
+                str += "</tr>";
+
+            list.innerHTML += str;
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+    
+    <!--
+        연습문제 1
+        prompt를 이용해 사용자로부터 숫자 입력을 받은 후 그 숫자가 짝수, 홀수인지 판별 
+        그 결과를 div(#area4)에 출력
+     -->
+    <button onclick="practice1()">숫자만 입력하세요</button>
+    <div id="area4"></div>
+
+    <script>
+        function practice1() {
+            var num = prompt('숫자를 입력해주세요.');
+
+            if(num) {
+                if(num % 2 == 0) {
+                    document.getElementById('area4').innerHTML = '짝수입니다.'
+                } else {
+                    document.getElementById('area4').innerHTML = '홀수입니다.'
+                }
+            } else {
+                document.getElementById('area4').innerHTML = '취소 버튼을 클릭했습니다.'
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <!-- 
+        연습문제 2
+        사람 수와 사탕 갯수를 입력받아
+        한 사람당 나눠가질 수 있는 사탕의 갯수와
+        남는 사탕의 갯수를 label로 출력하되,
+        "한 사람당 xx개의 사탕을 나눠가질 수 있고, xx개의 사탕이 남습니다."
+        형식으로 출력    
+    -->
+
+    사람 수 : <input type="number" id="people"> <br>
+    사탕 갯수 : <input type="number" id="candy"> <br>
+
+    <button onclick="practice2()">남는 사탕 갯수 확인하기</button>
+
+    <br><br>
+
+    <label id="result"></label>
+
+    <script>
+        function practice2() {
+            var people = document.getElementById('people').value;
+            var candy = document.getElementById('candy').value;
+
+            if(people && candy) {
+                var candyPerPerson = Math.floor(candy / people);
+                var remainingCandy = candy % people;
+                // JavaScript는 변수에 자료형이 없기 때문에 아무거나 들어가서 정수를 원하면 소수점을 없애줘야함
+
+                document.getElementById('result').innerHTML = '한 사람당 ' + candyPerPerson + '개의 사탕을 나눠가질 수 있고, ' + remainingCandy + '개의 사탕이 남습니다.';
+            } else {
+                document.getElementById('result').innerHTML = '사람 수와 사탕 갯수를 모두 입력해주세요.';
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <fieldset>
+        <ul>
+            <li>사과</li>
+            <li>바나나</li>
+            <li>딸기</li>
+            <li>복숭아</li>
+            <li>키위</li>
+        </ul>
+    </fieldset>
+
+    <br><br>
+
+    구매할 과일명 : <input type="text" id="fruit"> <br>
+    <button onclick="practice3()">가격 확인</button>
+
+    <script>
+        function practice3() {
+            var fruit = document.getElementById('fruit').value;
+
+            switch(fruit) {
+                case '사과' : alert('사과는 1000원입니다.'); break;
+                case '바나나' : alert('바나나는 2000원입니다.'); break;
+                case '딸기' : alert('딸기는 3000원입니다.'); break;
+                case '복숭아' : alert('복숭아는 4000원입니다.'); break;
+                case '키위' : alert('키위는 5000원입니다.'); break;
+                default : alert('구매할 수 없는 과일입니다.');
+            }
+        }
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <!--
+        연습문제 4
+        버튼 클릭 시 confirm으로
+        프로그램을 종료하시겠습니까? 라고 물어본 후
+        확인 버튼 클릭 시 result2에 프로그램을 종료합니다. 라고 출력
+    -->
+    
+    <button onclick="practice4()">프로그램 종료하기</button>
+
+    <div id="result2"></div>
+
+    <script>
+        function practice4() {
+            var result = confirm('프로그램을 종료하시겠습니까?');
+
+            if(result) {
+                document.getElementById('result2').innerHTML = '프로그램을 종료합니다.';
+            } else {
+                document.getElementById('result2').innerHTML = '취소 버튼을 클릭했습니다.';
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+<br><br><br><br><br><br><br><br><br><br>

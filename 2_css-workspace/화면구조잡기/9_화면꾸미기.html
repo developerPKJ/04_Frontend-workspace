@@ -12,15 +12,15 @@
 
         <div id="header">
             <div id="header_1">
-                <a href="https://kh-academy.co.kr/main/main.kh">
-                    <img id="logo" src="../resources/image/kh_logo.jpg" alt="KH정보교육원 로고">
+                <a href="https://chzzk.naver.com/">
+                    <img id="logo" src="../resources/image/1.기본형로고(한글)/1.기본형로고(한글)/1.기본형로고(한글)/chzzklogo_kor(Green).png">
                 </a>
             </div>
 
             <div id="header_2">
                 <form action="search" method="get" id="search_form">
                     <div id="search_text">
-                        <input type="text" id="search">
+                        <input type="text" id="search" placeholder="&nbsp;강의 검색" required>
                     </div>
                     <div id="search_btn">
                         <input type="button" id="submit" value="검색">
@@ -67,14 +67,18 @@
         <div id="content">
             <div id="content_1"></div>
 
-            <div id="content_2"></div>
+            <div id="content_2">
+                <div id="video">
+                    <iframe src="https://mul.live/bb382c2c0cc9fa7c86ab3b037fb5799c"></iframe>
+                </div>
+            </div>
 
             <div id="content_3">
                 <div id="login_form">
                     <form id="login_form_input" action="member/login" method="post">
                         <div id="login_input_id_pwd">
-                            <input type="text" name="userId" placeholder="아이디" required><br>
-                            <input type="password" name="userPwd" placeholder="비밀번호" required>
+                            <input type="text" name="userId" placeholder="&nbsp;아이디" required><br>
+                            <input type="password" name="userPwd" placeholder="&nbsp;비밀번호" required>
                         </div>
                         <div id="login_input_btn">
                             <input type="submit" value="로그인">
@@ -85,10 +89,20 @@
                         <a href="">ID/PWD 찾기</a>
                     </div>
                 </div>
+
+                <div id="news">
+                    <a href="">
+                        <img src="../resources/image/coffee.png"><br>커피 하루에 몇 잔까지 마셔도 괜찮을까?
+                    </a>
+                    <a href="">
+                        <img src="../resources/image/flower4.jpg"><br>올해 봄에 피는 꽃은 언제쯤 볼 수 있을까?
+                    </a>
+                </div>
             </div>
         </div>
 
         <div id="footer">
+            <hr>
             <div id="footer_1">
                 <a href="">이용약관</a> |
                 <a href="">개인정보처리방침</a> |
