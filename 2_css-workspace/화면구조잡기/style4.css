@@ -183,6 +183,10 @@ div {
     color: white;
 }
 
+#login_input_id_pwd > #pwd {
+    margin-top: 3px;
+}
+
 #login_input_btn > input {
     width: 90%;
     box-sizing: border-box;
@@ -367,7 +371,7 @@ div {
     max-height: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 #content_2 > #video > iframe {
@@ -378,14 +382,13 @@ div {
     border-radius: 10px;
 }
 
-/* news css */
-#news {
+/* banner css */
+#banner {
     width: 100%;
     box-sizing: border-box;
-    position: relative;
 }
 
-#news > a {
+#banner > a {
     text-decoration: none;
     color: white;
     font-size: 14px;
@@ -397,7 +400,36 @@ div {
     text-align: center;
 }
 
-#news > a > img {
+#banner > a > img {
+    width: 80%;
+    height: 90px;
+    object-fit: cover;
+        /* 고정된 크기로 압축하는게 아니라 이미지 일부를 자르려면 */
+    display: inline-block;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 3px solid #00FFA3;
+}
+
+/* lecture css */
+#lecture {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#lecture > a {
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 570;
+    width: 100%;
+    height: auto;
+    display: block;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+#lecture > a > img {
     width: 80%;
     height: 90px;
     object-fit: cover;
