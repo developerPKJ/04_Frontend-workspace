@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <h1>이벤트 핸들러 jQuery 연결 방법 종류</h1>
+
+    <!--
+        순수 자바스크립트로 이벤트 핸들러 연결하는 방법
+        1. 고전 이벤트 모델 방식
+            element.onclick = function() { ... }
+        2. 인라인 이벤트 모델 방식
+            tag에 이벤트 핸들러 속성 이용
+        3. 표준 이벤트 모델 방식
+            addEventListener() 메서드 이용
+        
+        - target, type, handler가 모두 언급되어야 함
+    -->
+
+    <h3>방법 1. 이벤트 메소드를 통한 연결</h3>
+
+    <pre>
+        $("선택자").이벤트메소드() { ... };
+
+        - 이벤트 메소드 종류
+        click() : 클릭 이벤트
+        dblclick() : 더블 클릭 이벤트
+        mouseenter() : 마우스가 요소에 진입할 때 발생하는 이벤트
+        mouseout() : 마우스가 요소에서 떠날 때 발생하는 이벤트
+        mouseleave() : 마우스가 요소에서 떠날 때 발생하는 이벤트
+        ...
+    </pre>
+
+    <h4 id="test1">클릭해보세요</h4>
+
+    <script>
+        jQuery(document).ready(function() {
+            
+            // 클릭 이벤트 핸들러 연결
+            $("#test1").click(function() {
+                $(this).html("클릭되었습니다.");
+            });
+
+            // 더블 클릭 이벤트 핸들러 연결
+            $("#test1").dblclick(function() {
+                $(this).html("더블 클릭되었습니다.");
+            });
+            
+            // 마우스 진입 이벤트 핸들러 연결
+            $("#test1").mouseenter(function() {
+                $(this).css("color", "red");
+            });
+
+            // 마우스 떠날 때 이벤트 핸들러 연결
+            $("#test1").mouseout(function() {
+                $(this).css("color", "black");
+            });
+        });
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>방법 2. on() 메서드를 통한 연결</h3>
+
+    <pre>
+        $("선택자").on("이벤트명", function() { ... });
+
+        - 이벤트명은 문자열로 전달
+    </pre>
+
+    <h4 id="test2">클릭해보세요</h4>
+    <h4 id="test">test</h4>
+
+    <script>
+        jQuery(document).ready(function() {
+            
+            // 클릭 이벤트 핸들러 연결
+            $("#test2").on("click", function() {
+                $(this).css("background-color", "yellow").html("클릭되었습니다.");
+            });
+
+            // 더블 클릭 이벤트 핸들러 연결
+            $("#test2").on("dblclick", function() {
+                $(this).html("더블 클릭되었습니다.");
+            });
+            
+            // 마우스 진입 이벤트 핸들러 연결
+            $("#test2").on("mouseenter", function() {
+                $(this).css("color", "blue");
+            });
+
+            // 마우스 떠날 때 이벤트 핸들러 연결
+            $("#test2").on("mouseleave", function() {
+                $(this).css("color", "black");
+            });
+        });
+
+        /*
+            한 요소에 여러개의 이벤트를 걸려면(메소드 체이닝)
+
+            방법 1.
+            $("#test2").on("click", function() { ... })
+                       .on("dblclick", function() { ... })
+                       .on("mouseenter", function() { ... })
+                       .on("mouseleave", function() { ... });
+
+            방법 2.
+            $("#test2").click(function() { ... })
+                       .dblclick(function() { ... })
+                       .mouseenter(function() { ... })
+                       .mouseleave(function() { ... });
+
+            > on() 메서드는 여러 이벤트를 한 번에 연결할 수 있는 장점이 있음
+            방법 3.
+            $("#test2").on({
+                click: function() { ... },
+                dblclick: function() { ... },
+                mouseenter: function() { ... },
+                mouseleave: function() { ... }
+            });  
+        */
+        $("#test").on({
+            click: function() {
+                $(this).css("background-color", "yellow").html("클릭되었습니다.");
+            },
+            dblclick: function() {
+                $(this).html("더블 클릭되었습니다.");
+            },
+            mouseenter: function() {
+                $(this).css("color", "blue");
+            },
+            mouseleave: function() {
+                $(this).css("color", "black");
+            }
+        });
+
+        // 이벤트 핸들러 제거
+        // .off("이벤트명") : 특정 이벤트 핸들러 제거
+        // .off() : 모든 이벤트 핸들러 제거
+        // $("#test").off("click"); // 클릭 이벤트 핸들러 제거
+        $("#test").off(); // 모든 이벤트 핸들러 제거
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>방법 3. 이벤트 위임을 통한 연결</h3>
+
+    <pre>
+        $("부모 요소").on("이벤트명", "자식 요소 선택자", function() { ... });
+
+        - 부모 요소에 이벤트 핸들러를 연결하고, 자식 요소에서 이벤트가 발생했을 때
+            핸들러가 실행되도록 하는 방식
+        - 동적으로 생성된 요소에도 이벤트 핸들러가 적용됨
+    </pre>
+
+    <h4>test</h4>
+
+    <div id="wrap">
+        <h4>h4 클릭해보세요</h4>
+        <h5>h5 클릭해보세요</h5>
+    </div>
+
+    <script>
+        $("#wrap").on("click", "h4", function() {
+            $(this).css("color", "green").html("h4 클릭됨");
+        });
+
+        $(document).on("dblclick", "h5", function() {
+            $(this).css("color", "orange").html("h5 더블 클릭됨");
+        });
+        // document는 순수 자바스크립트 객체, $()로 jQuery화 시킴
+        // document 객체는 모든 요소의 부모 요소이므로, 어느 요소로든 연결 가능
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>
+        동적으로 만들어진 요소에도 동일한 이벤트를 적용하고자 한다면 반드시
+        방법 3으로 이벤트를 걸어야 한다
+    </h3>
+
+    <!-- 
+        참고)
+        동적으로 만들어진 요소
+        : 처음에 html 코드 상으로는 없지만, 나중에 자바스크립트나
+        jQuery를 통해 생성된 요소
+    -->
+
+    <script>
+        $("#wrap").append("<p>동적으로 만들어진 요소입니다.</p>");
+        // DOM 조작으로 만들어진 요소
+    </script>
+
+    <div id="wrap2" style="border: 1px solid red;">
+        <h6>기존에 존재하는 요소</h6>
+    </div>
+
+    <script>
+        jQuery(document).ready(function() {
+            // 방법 1
+            // $("#wrap2>h6").click(function() {
+            //     $("#wrap2").append("<h6>동적으로 만들어진 요소입니다.</h6>");
+            // });
+
+            // 방법 2
+            // $("#wrap2>h6").on("click", function() {
+            //     $("#wrap2").append("<h6>동적으로 만들어진 요소입니다.</h6>");
+            // });
+
+            // 방법 1과 방법 2는 기존에 존재하는 요소에만 이벤트 핸들러가 연결되므로,
+            // 동적으로 만들어진 요소에는 이벤트가 적용되지 않음
+
+            // 방법 3
+            $("#wrap2").on("click", "h6", function() {
+                $("#wrap2").append("<h6>동적으로 만들어진 요소입니다.</h6>");
+            });
+
+            /*
+                원인
+                : 동적으로 요소가 만들어지는 시점이 방법 1과 방법 2는
+                이벤트가 걸리는 시점보다 이후이기 때문에
+            */
+        });
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>일회성 이벤트</h3>
+
+    <pre>
+        $("선택자").one("이벤트명", function() { ... });
+
+        - 한 번만 실행되는 이벤트 핸들러 연결
+        - 이벤트가 발생한 후 자동으로 제거됨
+    </pre>
+
+    <h4 id="test3">클릭해보세요</h4>
+
+    <script>
+        $("#test3").one("click", function() {
+            alert("이벤트가 한 번만 실행됩니다.");
+        });
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>키보드 관련 이벤트</h3>
+
+    <p>
+        keydown : 키가 눌렸을 때 발생하는 이벤트
+        keyup : 키에서 손을 뗐을 때 발생하는 이벤트
+        keypress : 키보드 펑션키(F1~F12), 기능키, 한글 제외한
+            다른 키가 눌렸을 때 발생하는 이벤트
+    </p>
+
+    <input type="text" id="test4">
+
+    <script>
+        $(document).ready(function() {
+            // $("#test4").keydown(function() {
+            //     console.log("keydown 이벤트 발생");
+            //     console.log($(this).val());
+            //     console.log($(this).val().length);
+            // });
+
+            // $("#test4").keypress(function() {
+            //     console.log("keypress 이벤트 발생");
+            //     console.log($(this).val());
+            //     console.log($(this).val().length);
+            // });
+
+            $("#test4").keyup(function() {
+                console.log("keyup 이벤트 발생");
+                console.log($(this).val());
+                console.log($(this).val().length);
+            });
+
+            /*
+                keydown과 keypress 이벤트는 키가 눌리는 순간에 발생하기 때문에
+                $(this).val()로 입력된 값을 가져오면, 아직 눌린 키가 반영되지 않은
+                상태의 값이 출력됨
+
+                keyup 이벤트는 키에서 손을 뗀 후에 발생하기 때문에
+                $(this).val()로 입력된 값을 가져오면, 눌린 키가 반영된 상태의
+                값이 출력됨
+
+                length 또한 마찬가지
+            */
+        });
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <!-- 예시 -->
+    <h3>동적으로 글자수 세기</h3>
+
+    <div>
+        150자 내로 작성<br>
+        <textarea   id="content" cols="30" rows="10" 
+                    style="resize : none;" maxlength="150"></textarea><br>
+
+        <span id="count">0</span> / 150
+    </div>
+
+    <script>
+        jQuery(document).ready(function() {
+            $("#content").keyup(function() {
+                let length = $(this).val().length;
+                $("#count").text(length);
+            });
+        });
+    </script>
+
+    <br><br>
+
+    <hr>
+
+    <h3>입력 양식 관련 이벤트</h3>
+
+    <p>
+        focus : 요소에 포커스가 맞춰질 때 발생하는 이벤트
+        blur : 요소에서 포커스가 벗어날 때 발생하는 이벤트
+        change : 입력한 데이터의 내용이 변경된 후 포커스가 벗어날 때 발생하는 이벤트
+    </p>
+
+    <input type="text" id="test5">
+
+    <script>
+        $(function() {
+            $("#test5").focus(function() {
+                $(this).css("background-color", "lightblue");
+            });
+
+            $("#test5").blur(function() {
+                $(this).css("background-color", "white");
+            });
+
+            $("#test5").change(function() {
+                alert("입력한 데이터가 변경되었습니다.");
+            });
+        });
+    </script>
+</body>
+</html>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
